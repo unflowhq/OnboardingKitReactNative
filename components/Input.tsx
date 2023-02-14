@@ -29,7 +29,9 @@ export default function Input({
 
 const styles = StyleSheet.create({
   input: {
-    width: 160,
-    height: 160,
+    width: '100%',
+    paddingVertical: 16,
+    paddingHorizontal: 12,
+    backgroundColor: '#F6F6F6',
   },
 });

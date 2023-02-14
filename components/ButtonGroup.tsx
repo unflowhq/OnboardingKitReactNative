@@ -6,8 +6,5 @@ export default function ButtonGroup({children}: {children: React.ReactNode}) {
 }
 
 const styles = StyleSheet.create({
-  group: {
-    flexDirection: 'column',
-    gap: 100,
-  },
+  group: {flexDirection: 'column', gap: 4},
 });

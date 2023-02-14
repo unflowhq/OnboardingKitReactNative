@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Header from '../components/Header';
 import Paragraph from '../components/Paragraph';
-import drum from '../assets/drum.png';
+import drum from '../assets/Drum.png';
 
 export default function ConfirmEmailPage() {
   return (

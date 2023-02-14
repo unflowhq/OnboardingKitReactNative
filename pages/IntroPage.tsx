@@ -4,7 +4,7 @@ import MinimalButton from '../components/MinimalButton';
 import ButtonGroup from '../components/ButtonGroup';
 import Title from '../components/Title';
 
-export default function IntroPage({navigation}) {
+export default function IntroPage({navigation}: {navigation: any}) {
   const handleSignUp = () => {
     navigation.navigate('EmailPage');
   };

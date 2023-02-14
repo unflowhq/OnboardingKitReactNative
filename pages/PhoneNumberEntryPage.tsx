@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import Header from '../components/Header';
 import Input from '../components/Input';
 import Paragraph from '../components/Paragraph';
-import drum from '../assets/drum.png';
+import drum from '../assets/Drum.png';
 import MinimalButton from '../components/MinimalButton';
 
 export default function PhoneNumberEntryPage() {
