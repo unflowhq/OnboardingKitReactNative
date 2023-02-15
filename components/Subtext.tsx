@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, useColorScheme} from 'react-native';
 
-export default function Paragraph({text}: {text: string}) {
+export default function Subtext({text}: {text: string}) {
   const colorScheme = useColorScheme() || 'light';
 
   return <Text style={[styles.text, styles[colorScheme]]}>{text}</Text>;
@@ -9,8 +9,7 @@ export default function Paragraph({text}: {text: string}) {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 16,
-    fontWeight: '300',
+    fontSize: 12,
   },
   light: {
     color: '#000000',

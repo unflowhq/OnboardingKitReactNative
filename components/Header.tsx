@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, View, Image} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import AppearanceImage from './AppearanceImage';
 import Title from './Title';
 
 export default function Header({image, text}: {text: string; image: any}) {
   return (
     <View style={styles.container}>
-      <Image source={image} resizeMode="contain" style={styles.image} />
+      <AppearanceImage name={image} style={styles.image} />
       <Title text={text} />
     </View>
   );

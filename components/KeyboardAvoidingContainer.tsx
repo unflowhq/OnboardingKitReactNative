@@ -11,7 +11,7 @@ export default function KeyboardAvoidingContainer({
   return (
     <KeyboardAvoidingView
       style={[styles.container, style]}
-      keyboardVerticalOffset={60}
+      keyboardVerticalOffset={100}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       {children}
     </KeyboardAvoidingView>

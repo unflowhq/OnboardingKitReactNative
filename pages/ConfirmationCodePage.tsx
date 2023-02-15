@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Alert,
-  KeyboardAvoidingView,
-  Platform,
-} from 'react-native';
+import {StyleSheet, Text, View, Alert, useColorScheme} from 'react-native';
 import Paragraph from '../components/Paragraph';
 import Title from '../components/Title';
 import {
@@ -20,13 +13,20 @@ import {useKeyboard} from '../hooks/keyboard';
 import AnimatedViews from '../components/AnimatedViews';
 import KeyboardAvoidingContainer from '../components/KeyboardAvoidingContainer';
 
-export default function ConfirmationCodePage({route, navigation}) {
+export default function ConfirmationCodePage({
+  route,
+  navigation,
+}: {
+  route: any;
+  navigation: any;
+}) {
   const [value, setValue] = useState('');
   const ref = useBlurOnFulfill({value, cellCount: 6});
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
     value,
     setValue,
   });
+  const colorScheme = useColorScheme() || 'light';
   const keyboardOpen = useKeyboard();
 
   const {phoneNumber, expectedCode} = route.params;
@@ -66,9 +66,13 @@ export default function ConfirmationCodePage({route, navigation}) {
           renderCell={({index, symbol, isFocused}) => (
             <View
               key={index}
-              style={[styles.cell, isFocused && styles.focusCell]}
+              style={[
+                styles.cell,
+                styles[colorScheme],
+                isFocused && styles.focusCell,
+              ]}
               onLayout={getCellOnLayoutHandler(index)}>
-              <Text style={styles.cellText}>
+              <Text style={[styles.cellText, styles[colorScheme]]}>
                 {symbol || (isFocused ? <Cursor /> : null)}
               </Text>
             </View>
@@ -94,9 +98,17 @@ const styles = StyleSheet.create({
     height: 60,
     borderWidth: 2,
     borderRadius: 8,
-    borderColor: '#F6F6F6',
-    backgroundColor: '#F6F6F6',
   },
   focusCell: {borderColor: '#000000'},
   cellText: {fontSize: 24, textAlign: 'center'},
+  light: {
+    color: '#000000',
+    borderColor: '#F6F6F6',
+    backgroundColor: '#F6F6F6',
+  },
+  dark: {
+    color: '#E7E9E6',
+    borderColor: '#333333',
+    backgroundColor: '#333333',
+  },
 });

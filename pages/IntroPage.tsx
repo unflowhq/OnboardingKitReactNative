@@ -3,8 +3,6 @@ import {StyleSheet, View, Image} from 'react-native';
 import MinimalButton from '../components/MinimalButton';
 import ButtonGroup from '../components/ButtonGroup';
 import Title from '../components/Title';
-import intro1 from '../assets/IntroImage1.png';
-import intro2 from '../assets/IntroImage2.png';
 
 export default function IntroPage({navigation}: {navigation: any}) {
   const handleSignUp = () => {
@@ -23,10 +21,18 @@ export default function IntroPage({navigation}: {navigation: any}) {
       />
       <View style={styles.imageContainer}>
         <View style={styles.leftImage}>
-          <Image source={intro1} resizeMode="contain" style={styles.image} />
+          <Image
+            source={require('../assets/IntroImage1.png')}
+            resizeMode="contain"
+            style={styles.image}
+          />
         </View>
         <View style={styles.rightImage}>
-          <Image source={intro2} resizeMode="contain" style={styles.image} />
+          <Image
+            source={require('../assets/IntroImage1.png')}
+            resizeMode="contain"
+            style={styles.image}
+          />
         </View>
       </View>
       <ButtonGroup style={styles.horizontalContainer}>
