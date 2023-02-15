@@ -1,29 +1,46 @@
-import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import React, {useState} from 'react';
+import {Alert, KeyboardAvoidingView, Platform, StyleSheet} from 'react-native';
 import Header from '../components/Header';
 import Input from '../components/Input';
 import Paragraph from '../components/Paragraph';
-import drum from '../assets/Drum.png';
+import eyes from '../assets/StrangeEyesLight.png';
 import MinimalButton from '../components/MinimalButton';
+import {useValidation} from '../hooks/validations';
+import {useKeyboard} from '../hooks/keyboard';
+import AnimatedViews from '../components/AnimatedViews';
+import KeyboardAvoidingContainer from '../components/KeyboardAvoidingContainer';
 
-export default function PhoneNumberEntryPage() {
+export default function PhoneNumberEntryPage({navigation}) {
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const {validatePhoneNumber} = useValidation();
+  const keyboardVisible = useKeyboard();
+
+  const handleSendMessage = () => {
+    if (!validatePhoneNumber(phoneNumber)) {
+      return Alert.alert('Invalid phone number', 'Please enter a phone number');
+    }
+    // TODO: Add your own service to send a login link via SMS with the generated 'expectedCode'
+    const expectedCode = '198913';
+    navigation.navigate('ConfirmationCodePage', {phoneNumber, expectedCode});
+  };
+
   return (
-    <View style={styles.container}>
-      <View>
-        <Header image={drum} text="What's your phone number?" />
-        <Paragraph text="We've sent an email with a verification link to email@example.com" />
+    <KeyboardAvoidingContainer style={styles.container}>
+      <AnimatedViews.FadingView visible={!keyboardVisible}>
+        <Header image={eyes} text="What's your phone number?" />
         <Paragraph text="We need to make sure you're you. Please let us know what number to send a code to." />
-        <Input value="" type="phone" onChange={() => {}} />
-      </View>
-      <MinimalButton text="Send code" onPress={() => {}} />
-    </View>
+      </AnimatedViews.FadingView>
+      <Input value={phoneNumber} type="phone" onChange={setPhoneNumber} />
+      <AnimatedViews.Spacer visible={!keyboardVisible} />
+      <MinimalButton text="Send code" onPress={handleSendMessage} />
+    </KeyboardAvoidingContainer>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
+    marginHorizontal: 20,
+    gap: 20,
   },
 });
